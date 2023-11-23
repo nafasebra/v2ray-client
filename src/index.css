@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Poppins";
+    src: url('http://content.vip-status.site/site/themes/dark-1/fonts/Poppins-Bold.ttf');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Morabba";
+    src: url('http://content.vip-status.site/site/themes/dark-1/fonts/Morabba.ttf');
+    font-display: swap;
+  }
+
+}
+
+@layer components {
+  body {
+    overflow-x: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('http://content.vip-status.site/site/themes/dark-1/images/Asset1.png');
+    background-color: rgb(19, 11, 53);
+    min-height: 100vh;
+  }
+
+  @media only screen and (max-width: 420px) {
+    #qrcode {
+      width: 300px !important;
+      height: 300px !important;
+    }
+  }
+}

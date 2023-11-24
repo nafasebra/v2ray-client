@@ -1,5 +1,5 @@
 import { useHeaderButton } from "@/api/useHeaderButton";
-import Loading from "./Loading";
+import Loading from "../loading/Loading";
 
 function Header() {
   const { data, error, isLoading } = useHeaderButton();

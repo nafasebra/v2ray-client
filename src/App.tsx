@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 import routes from "@/router";
-import Container from "@/components/Container";
+import Container from "@/components/layout/Container";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();

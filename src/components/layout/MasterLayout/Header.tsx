@@ -1,8 +1,15 @@
-import { useHeaderButton } from "@/api/useHeaderButton";
+import { useQuery } from "@tanstack/react-query";
+
+import { keys } from "@/api/keys";
+import { getHeaderButtons } from "@/api/queries";
+
 import Loading from "@/components/loading/Loading";
 
 function Header() {
-  const { data, error, isLoading } = useHeaderButton();
+  const { data, isLoading, isSuccess } = useQuery({
+    queryFn: getHeaderButtons,
+    queryKey: [keys.HEADER_BUTTONS],
+  });
 
   const handleChangeLanguage = () => {
     console.log("language is changed!");
@@ -19,38 +26,34 @@ function Header() {
           alt="logo"
         />
         <button
-          className="cursor-pointer px-2 rounded-lg font-bold text-xl text-black bg-gradient-to-r from-light-green via-light-pink to-purple"
-          onClick={handleChangeLanguage}
-        >
-          fa
+          className="cursor-pointer px-2 rounded-lg font-bold text-xl text-black bg-gradient-to-r from-light-green to-light-pink to-purple"
+          onClick={handleChangeLanguage}>
+          Fa
         </button>
       </div>
-      <div className="flex items-center gap-5">
-        {isLoading ? (
-          <Loading />
-        ) : !error ? (
-          <button
-            className="py-3 px-4 rounded-lg flex items-center gap-3"
-            style={{
-              backgroundColor: `${data?.background}` || "#fff",
-            }}
-          >
-            <div
+      <div className="flex items-center gap-2">
+        {isLoading && <Loading />}
+        {isSuccess &&
+          data.data.map((item) => (
+            <button
+              className="py-3 px-4 rounded-lg flex items-center gap-3"
               style={{
-                color: `${data?.iconColor}` || "#fff",
-              }}
-            >
-              <img src={data?.icon || ""} className="w-[25px]" />
-            </div>
-            <p
-              style={{
-                color: `${data?.textColor}` || "#fff",
-              }}
-            >
-              {data?.text || "text"}
-            </p>
-          </button>
-        ) : null}
+                backgroundColor: `${item.background_color}` || "#fff",
+              }}>
+              <div
+                style={{
+                  color: `${item.icon_color}` || "#fff",
+                }}>
+                <img src={item.icon} className="w-[25px]" />
+              </div>
+              <p
+                style={{
+                  color: `${item.text_color}` || "#fff",
+                }}>
+                {item.text || "text"}
+              </p>
+            </button>
+          ))}
       </div>
     </nav>
   );

@@ -12,14 +12,11 @@
   "dependencies": {
     "@tanstack/react-query": "^5.8.4",
     "i18next": "^23.7.6",
-    "localforage": "^1.10.0",
-    "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^13.5.0",
     "react-query": "^3.39.3",
-    "react-router-dom": "^6.19.0",
-    "sort-by": "^1.2.0"
+    "react-router-dom": "^6.19.0"
   },
   "devDependencies": {
     "@types/node": "^20.9.4",

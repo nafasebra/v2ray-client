@@ -53,7 +53,7 @@ function Confirm() {
         <button
           onClick={() => handleClick()}
           type="submit"
-          className="font-bold bg-gradient-to-r from-light-green via-light-pink to-purpl text-black rounded-lg py-3 px-6 hover:opacity-70"
+          className="font-bold bg-gradient-to-r from-light-green to-light-pink to-purpl text-black rounded-lg py-3 px-6 hover:opacity-70"
         >
           Check and connect
         </button>

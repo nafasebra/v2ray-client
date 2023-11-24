@@ -39,16 +39,15 @@ function Confirm() {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6">
-      <div className="w-full flex flex-col items-stretch order-2 md:order-1 gap-3">
+    <div className="w-full max-w-sm mx-auto md:max-w-none grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6">
+      <div className="w-full md:max-w-xl mx-auto flex flex-col items-stretch gap-3">
         <label htmlFor={textAreaId} className="text-2xl font-bold">
           Your config
         </label>
         <textarea
           onChange={(e) => setConfig(e.target.value)}
           id={textAreaId}
-          
-          className="text-white p-3 h-36 border-4 border-white bg-transparent rounded-xl focus:outline-none resize-none"
+          className="text-white p-3 h-48 border-4 border-white bg-transparent rounded-xl focus:outline-none resize-none"
           rows={5}></textarea>
         <button
           onClick={() => handleClick()}
@@ -57,11 +56,11 @@ function Confirm() {
           Check
         </button>
       </div>
-      <div className="w-full order-1 md:order-2">
+      <div className="w-full">
         <img
           src="http://content.vip-status.site/site/themes/dark-1/images/Asset2.png"
           alt="banner"
-          className="w-full max-w-sm mx-auto"
+          className="w-full max-w-xl mx-auto md:ml-auto"
         />
       </div>
     </div>

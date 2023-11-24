@@ -16,10 +16,10 @@ function Header() {
   };
 
   return (
-    <nav className="flex items-center justify-between flex-row-reverse rtl:flex-row gap-4 py-4 px-6">
-      <div className="flex items-center gap-6">
+    <nav className="flex items-center justify-between flex-col md:flex-row-reverse md:rtl:flex-row gap-4 py-4 px-6">
+      <div className="flex items-center gap-6 shrink-0">
         <img
-          className="h-8"
+          className="h-9"
           src={
             "http://content.vip-status.site/site/themes/dark-1/images/Asset3.png"
           }
@@ -31,24 +31,26 @@ function Header() {
           Fa
         </button>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-2">
         {isLoading && <Loading />}
         {isSuccess &&
           data.data.map((item) => (
-            <button
-              className="py-2 px-4 rounded flex items-center gap-2"
+            <a
+              href={item.url}
+              target="_blank"
+              className="py-2 px-4 rounded-lg flex items-center justify-center gap-2 w-[18ch]"
               style={{
                 backgroundColor: `${item.background_color}` || "#fff",
               }}>
               {!!item.icon && <img src={item.icon} className="w-5" />}
               <p
-                className="text-xs uppercase font-bold"
+                className="text-xs font-bold"
                 style={{
                   color: `${item.text_color}` || "#fff",
                 }}>
-                {item.text || "text"}
+                {item.text || "empty"}
               </p>
-            </button>
+            </a>
           ))}
       </div>
     </nav>

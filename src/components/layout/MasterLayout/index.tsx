@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Container from "./Container";
 import Footer from "./Footer";
 import Header from "./Header";
+import Container from "./Container";
 
 import type { ReactNode } from "react";
 
@@ -11,10 +11,12 @@ export interface MasterLayoutProps {
 
 export default function MasterLayout(props: MasterLayoutProps) {
   return (
-    <main className="text-white font-Poppins rtl:font-Morabba">
+    <Container>
       <Header />
-      <Container>{props.children || <Outlet />}</Container>
+      <main className="text-white font-Poppins rtl:font-Morabba">
+        {props.children || <Outlet />}
+      </main>
       <Footer />
-    </main>
+    </Container>
   );
 }

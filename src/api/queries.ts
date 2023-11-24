@@ -1,7 +1,7 @@
 import { api } from ".";
 
 interface ButtonsResult {
-  icon: string;
+  icon?: string;
   text: string;
   background_color: string;
   icon_color: string;

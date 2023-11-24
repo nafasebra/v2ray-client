@@ -36,17 +36,13 @@ function Header() {
         {isSuccess &&
           data.data.map((item) => (
             <button
-              className="py-3 px-4 rounded-lg flex items-center gap-3"
+              className="py-2 px-4 rounded flex items-center gap-2"
               style={{
                 backgroundColor: `${item.background_color}` || "#fff",
               }}>
-              <div
-                style={{
-                  color: `${item.icon_color}` || "#fff",
-                }}>
-                <img src={item.icon} className="w-[25px]" />
-              </div>
+              {!!item.icon && <img src={item.icon} className="w-5" />}
               <p
+                className="text-xs uppercase font-bold"
                 style={{
                   color: `${item.text_color}` || "#fff",
                 }}>

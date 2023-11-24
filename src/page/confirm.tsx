@@ -40,7 +40,7 @@ function Confirm() {
 
   return (
     <div className="w-full max-w-sm mx-auto md:max-w-none grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6">
-      <div className="w-full md:max-w-xl mx-auto flex flex-col items-stretch gap-3">
+      <div className="flex flex-col gap-3">
         <label htmlFor={textAreaId} className="text-2xl font-bold">
           Your config
         </label>
@@ -56,7 +56,7 @@ function Confirm() {
           Check
         </button>
       </div>
-      <div className="w-full">
+      <div>
         <img
           src="http://content.vip-status.site/site/themes/dark-1/images/Asset2.png"
           alt="banner"

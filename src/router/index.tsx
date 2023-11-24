@@ -1,9 +1,16 @@
+import { createBrowserRouter, type RouteObject } from "react-router-dom";
 import Main from "@/page/main";
 import Confirm from "@/page/confirm";
-const routes = [
-    { path: "/confirm", element: <Confirm/> },
-    { path: "/", element: <Main/> },
+import MasterLayout from "@/components/layout/MasterLayout";
+
+const routes: RouteObject[] = [
+  {
+    element: <MasterLayout />,
+    children: [
+      { path: "/confirm", element: <Confirm /> },
+      { path: "/", element: <Main /> },
+    ],
+  },
 ];
 
-
-export default routes;
+export const router = createBrowserRouter(routes);

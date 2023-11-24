@@ -1,12 +1,12 @@
 import { useHeaderButton } from "@/api/useHeaderButton";
-import Loading from "../loading/Loading";
+import Loading from "@/components/loading/Loading";
 
 function Header() {
   const { data, error, isLoading } = useHeaderButton();
 
   const handleChangeLanguage = () => {
-    console.log('language is changed!')
-  }
+    console.log("language is changed!");
+  };
 
   return (
     <nav className="flex items-center justify-between flex-row-reverse rtl:flex-row gap-4 py-4 px-6">
@@ -26,30 +26,31 @@ function Header() {
         </button>
       </div>
       <div className="flex items-center gap-5">
-        {
-          isLoading ? (
-            <Loading />
-          ) : (
-            (
-              !error ? (
-                <button className="py-3 px-4 rounded-lg flex items-center gap-3" style={{
-                  backgroundColor: `${data?.background}` || '#fff'
-                }}>
-                  <div style={{
-                    color: `${data?.iconColor}` || "#fff"
-                  }}>
-                    <img src={data?.icon || ""} className="w-[25px]" />
-                  </div>
-                  <p style={{
-                    color: `${data?.textColor}` || "#fff"
-                  }}>
-                    {data?.text || "text"}
-                  </p>
-                </button>
-              ) : null
-            )
-          )
-        }
+        {isLoading ? (
+          <Loading />
+        ) : !error ? (
+          <button
+            className="py-3 px-4 rounded-lg flex items-center gap-3"
+            style={{
+              backgroundColor: `${data?.background}` || "#fff",
+            }}
+          >
+            <div
+              style={{
+                color: `${data?.iconColor}` || "#fff",
+              }}
+            >
+              <img src={data?.icon || ""} className="w-[25px]" />
+            </div>
+            <p
+              style={{
+                color: `${data?.textColor}` || "#fff",
+              }}
+            >
+              {data?.text || "text"}
+            </p>
+          </button>
+        ) : null}
       </div>
     </nav>
   );

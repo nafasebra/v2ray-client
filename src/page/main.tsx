@@ -1,10 +1,11 @@
 import ActiveChart from "@/components/pice/ActiveChart";
 import QRCodeContainer from "@/components/pice/QRCodeContainer";
+import AppLinksSection from "@/components/status/AppLinksSection";
 
 function Main() {
   return (
     <section className="container mx-auto flex flex-col lg:flex-row gap-20 min-h-[calc(100vh-100px)] py-8">
-      <div className="w-full lg:w-[20%] space-y-3">
+      <aside className="w-full lg:w-[20%] space-y-3">
         <div className="gradient py-2 px-4 rounded-lg font-bold text-3xl text-black text-center">
           15dzzx1..
         </div>
@@ -17,8 +18,8 @@ function Main() {
             Change
           </button>
         </div>
-      </div>
-      <div className="w-full lg:w-[60%]">
+      </aside>
+      <article className="w-full lg:w-[60%]">
         <div className="space-y-5 border border-white rounded-lg p-3">
           <h2 className="text-center text-3xl font-bold gradient text-transparent bg-clip-text">
             Traffic
@@ -57,21 +58,10 @@ function Main() {
             </button>
           </div>
         </div>
-      </div>
-      <div className="w-full lg:w-[20%] space-y-2">
-        <div className="gradient py-2 px-4 rounded-lg font-bold text-xl text-black text-center">
-          Android
-        </div>
-        <div className="gradient py-2 px-4 rounded-lg font-bold text-xl text-black text-center">
-          IOS
-        </div>
-        <div className="gradient py-2 px-4 rounded-lg font-bold text-xl text-black text-center">
-          Windows
-        </div>
-        <div className="gradient py-2 px-4 rounded-lg font-bold text-xl text-black text-center">
-          Mac Os
-        </div>
-      </div>
+      </article>
+      <aside className="w-full lg:w-[20%] space-y-2">
+        <AppLinksSection />
+      </aside>
     </section>
   );
 }

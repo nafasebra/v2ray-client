@@ -16,6 +16,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^13.5.0",
+    "react-minimal-pie-chart": "^8.4.0",
+    "react-qrcode-logo": "^2.9.0",
     "react-router-dom": "^6.19.0",
     "react-transition-group": "^4.4.5"
   },

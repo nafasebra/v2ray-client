@@ -1,14 +1,6 @@
 import { api } from ".";
-
-interface ButtonsResult {
-  icon?: string;
-  text: string;
-  background_color: string;
-  icon_color: string;
-  text_color: string;
-  url: string;
-}
+import { IButtonsResult } from "@/types/HeaderButton";
 
 export function getHeaderButtons() {
-  return api.get<ButtonsResult[]>("/FrontEnd/buttons.php");
+  return api.get<IButtonsResult[]>("/FrontEnd/buttons.php");
 }

@@ -39,7 +39,7 @@ function Confirm() {
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto md:max-w-none grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6">
+    <section className="container grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6">
       <div className="flex flex-col gap-3">
         <label htmlFor={textAreaId} className="text-2xl font-bold">
           Your config
@@ -52,7 +52,7 @@ function Confirm() {
         <button
           onClick={() => handleClick()}
           type="submit"
-          className="font-bold bg-gradient-to-r from-light-green to-light-pink to-purpl text-black rounded-lg py-3 px-6 hover:brightness-110 active:brightness-90 transition-all">
+          className="font-bold gradient text-black rounded-lg py-3 px-6 hover:opacity-50 active:opacity-70 transition-colors">
           Check
         </button>
       </div>
@@ -63,7 +63,7 @@ function Confirm() {
           className="w-full max-w-xl mx-auto md:ml-auto"
         />
       </div>
-    </div>
+    </section>
   );
 }
 

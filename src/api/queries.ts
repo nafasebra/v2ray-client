@@ -1,10 +1,14 @@
 import { api } from ".";
-import { IButtonsResult, IAppsLink } from "@/types";
+import { IButtonsResult, IAppsLink, ISettingApp } from "@/types";
 
 export function getHeaderButtons() {
-  return api.get<IButtonsResult[]>("/FrontEnd/buttons.php");
+  return api.get<IButtonsResult[]>("/api/FrontEnd/buttons.php");
 }
 
 export function getAppsLink() {
-  return api.get<IAppsLink[]>("/FrontEnd/apps.json");
+  return api.get<IAppsLink[]>("/api/FrontEnd/apps.json");
+}
+
+export function getSetting() {
+  return api.get<ISettingApp>("/settings.php");
 }

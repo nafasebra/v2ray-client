@@ -15,3 +15,11 @@ export interface IAppsLink {
   platform: string;
   apps: IApp[];
 }
+
+export interface ISettingApp {
+  theme: string;
+  crisp_id: string;
+  footer_text_en: string;
+  footer_text_fa: string;
+  panels_cache_exp: string;
+}

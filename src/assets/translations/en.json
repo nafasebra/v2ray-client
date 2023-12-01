@@ -1,0 +1,13 @@
+{
+  "translation": {
+    "main": {
+      "title": "Your Configuration",
+      "check": "Check",
+      "form": {
+        "config": {
+          "invalid": "Your entered config is not valid"
+        }
+      }
+    }
+  }
+}

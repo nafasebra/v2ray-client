@@ -6,7 +6,7 @@ export function getHeaderButtons() {
 }
 
 export function getAppsLink() {
-  return api.get<IAppsLink[]>("/api/FrontEnd/apps.json");
+  return api.get<IAppsLink[]>("/api/FrontEnd/apps.php");
 }
 
 export function getSetting() {

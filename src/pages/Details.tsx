@@ -4,7 +4,7 @@ import AppLinksSection from "@/components/status/AppLinksSection";
 
 function Details() {
   return (
-    <section className="container mx-auto flex flex-col lg:flex-row gap-20 min-h-[calc(100vh-100px)] py-8">
+    <section className="container mx-auto flex flex-col lg:flex-row gap-20 min-h-[calc(100vh-100px)] p-6">
       <aside className="w-full lg:w-[20%] space-y-3">
         <div className="gradient py-2 px-4 rounded-lg font-bold text-3xl text-black text-center">
           15dzzx1..
@@ -59,7 +59,7 @@ function Details() {
           </div>
         </div>
       </article>
-      <aside className="w-full lg:w-[20%] space-y-2">
+      <aside className="w-full lg:w-[20%]">
         <AppLinksSection />
       </aside>
     </section>

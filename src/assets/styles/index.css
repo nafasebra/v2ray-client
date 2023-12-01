@@ -4,28 +4,29 @@
 
 @layer base {
   @font-face {
-    font-family: "Poppins";
-    src: url('http://content.vip-status.site/site/themes/dark-1/fonts/Poppins-Bold.ttf');
+    font-family: Poppins;
+    src: url("/fonts/Poppins-bold.ttf");
     font-display: swap;
   }
 
   @font-face {
-    font-family: "Morabba";
-    src: url('http://content.vip-status.site/site/themes/dark-1/fonts/Morabba.ttf');
+    font-family: Morabba;
+    src: url("/fonts/Morabba.ttf");
     font-display: swap;
   }
-}
 
-@layer components {
+  html,
   body {
     overflow-x: hidden;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url('http://content.vip-status.site/site/themes/dark-1/images/Asset1.png');
+    background-image: url("http://content.vip-status.site/site/themes/dark-1/images/Asset1.png");
     background-color: rgb(19, 11, 53);
     min-height: 100vh;
   }
+}
 
+@layer components {
   @media only screen and (max-width: 420px) {
     #qrcode {
       width: 300px !important;
@@ -37,5 +38,12 @@
 @layer utilities {
   .gradient {
     @apply bg-gradient-to-r from-light-green via-light-pink to-light-purple;
+  }
+
+  .font-fa {
+    font-family: Morabba, sans-serif;
+  }
+  .font-en {
+    font-family: Poppins, sans-serif;
   }
 }

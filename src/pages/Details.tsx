@@ -8,6 +8,7 @@ import { getDetails } from "@/api/queries";
 import ActiveChart from "@/components/pice/ActiveChart";
 import QRCodeContainer from "@/components/pice/QRCodeContainer";
 import AppLinksSection from "@/components/status/AppLinksSection";
+import Button from "@/components/ui/Button";
 
 function Details() {
   const { t } = useTranslation();
@@ -37,13 +38,9 @@ function Details() {
               : "https://google.com/"
           }
         />
-        <div className="grid grid-cols-2 gap-3">
-          <button className="rounded-full py-2 px-3 font-bold text-black gradient">
-            {t("details.button.copy")}
-          </button>
-          <button className="rounded-full py-2 px-3 font-bold text-black gradient">
-            {t("details.button.change")}
-          </button>
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
+          <Button round size="sm">{t("details.button.copy")}</Button>
+          <Button round size='sm'>{t("details.button.change")}</Button>
         </div>
       </aside>
       <article className="w-full lg:w-[60%]">
@@ -89,10 +86,10 @@ function Details() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <button className="rounded-full py-2 px-3 font-bold text-black gradient">
+            <button className="rounded-full py-2 font-bold text-black gradient">
               {t("details.button.copyStatus")}
             </button>
-            <button className="rounded-full py-2 px-3 font-bold text-black gradient">
+            <button className="rounded-full py-2 font-bold text-black gradient">
               {t("details.button.shareStatus")}
             </button>
           </div>

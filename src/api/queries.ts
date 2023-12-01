@@ -14,7 +14,7 @@ export function getSetting() {
 }
 
 export function getDetails(uuid: string, lang?: string) {
-  return api.get<IDetails>("/api/get", {
+  return api.get<IDetails>("/api/get/index.php", {
     params: {
       text: uuid,
       lang,

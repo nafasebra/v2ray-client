@@ -8,6 +8,23 @@
           "invalid": "کانفیگ وارد شده معتبر نیست"
         }
       }
+    },
+    "details": {
+      "traffic": "ترافیک",
+      "button": {
+        "copy": "کپی",
+        "change": "تغییر",
+        "copyStatus": "کپی اطلاعات",
+        "shareStatus": "اشتراک گذاری اطلاعات"
+      },
+      "status": {
+        "active": "فعال",
+        "expire": "تاریخ انقضا",
+        "totalTraffic": "کل ترافیک",
+        "totalUsage": "کل مصرف",
+        "download": "دانلوود",
+        "upload": "آپلود"
+      }
     }
   }
 }

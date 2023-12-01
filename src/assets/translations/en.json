@@ -8,6 +8,23 @@
           "invalid": "Your entered config is not valid"
         }
       }
+    },
+    "details": {
+      "traffic": "traffic",
+      "button": {
+        "copy": "Copy",
+        "change": "Change",
+        "copyStatus": "Copy Status",
+        "shareStatus": "Share Status"
+      },
+      "status": {
+        "active": "Active",
+        "expire": "Expire",
+        "totalTraffic": "Total Traffic",
+        "totalUsage": "Total Usage",
+        "download": "Download",
+        "upload": "Upload"
+      }
     }
   }
 }

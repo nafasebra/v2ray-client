@@ -23,3 +23,52 @@ export interface ISettingApp {
   footer_text_fa: string;
   panels_cache_exp: string;
 }
+
+export interface IDetails {
+  ok: boolean;
+  lang: string;
+  panel: number;
+  result: {
+    hash: string;
+    protocol: string;
+    setting: {
+      email: string;
+      enable: boolean;
+      expiryTime: number;
+      flow: string;
+      id: string;
+      reset: number;
+      subId: string;
+      tgId: string;
+      totalGB: number;
+    };
+    stat: {
+      id: number;
+      inboundId: number;
+      enable: boolean;
+      email: string;
+      up: number;
+      down: number;
+      expiryTime: number;
+      total: number;
+      reset: number;
+      totalUsed: number;
+      inboundRemark: string;
+    };
+    FrontEnd: {
+      expiryTime: string;
+      expiryTimeShort: string;
+      down: string;
+      up: string;
+      totalUsed: string;
+      total: string;
+      trafficRemaining: string;
+      email: string;
+      texts: {
+        statusText: string;
+      };
+      infoText: string;
+    };
+    connect_link: string;
+  };
+}

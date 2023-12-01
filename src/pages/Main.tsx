@@ -36,7 +36,7 @@ function Main() {
   }, [i18n.language, reset]);
 
   const handleClick = handleSubmit((values) => {
-    let uuid = "";
+    let uuid = values.config;
 
     if (values.config.startsWith("vless://")) {
       const matches = values.config.match(/vless:\/\/(.*?)@/);

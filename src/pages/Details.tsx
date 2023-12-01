@@ -14,10 +14,10 @@ function Details() {
         </div>
         <QRCodeContainer valueQrCode="thisissaman" />
         <div className="grid grid-cols-2 gap-3">
-          <button className="rounded-full py-2 px-6 font-bold text-black gradient">
+          <button className="rounded-full py-2 px-3 font-bold text-black gradient">
             {t("details.button.copy")}
           </button>
-          <button className="rounded-full py-2 px-6 font-bold text-black gradient">
+          <button className="rounded-full py-2 px-3 font-bold text-black gradient">
             {t("details.button.change")}
           </button>
         </div>
@@ -65,10 +65,10 @@ function Details() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <button className="rounded-full py-2 px-6 font-bold text-black gradient">
+            <button className="rounded-full py-2 px-3 font-bold text-black gradient">
               {t("details.button.copyStatus")}
             </button>
-            <button className="rounded-full py-2 px-6 font-bold text-black gradient">
+            <button className="rounded-full py-2 px-3 font-bold text-black gradient">
               {t("details.button.shareStatus")}
             </button>
           </div>

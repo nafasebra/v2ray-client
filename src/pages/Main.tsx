@@ -24,6 +24,7 @@ function Main() {
     handleSubmit,
     reset,
     formState: { errors },
+    setError,
   } = useForm<z.infer<typeof validation>>({
     resolver: zodResolver(validation),
   });
@@ -45,12 +46,14 @@ function Main() {
         const decodedText = atob(base64Text);
         const vmessData = JSON.parse(decodedText);
         uuid = vmessData.id;
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) { /* empty */ }
     }
 
-    if (!uuid.trim()) return;
+    if (!uuid.trim())
+      return setError("config", {
+        message: t("main.form.config.invalid"),
+        type: "validate",
+      });
 
     navigate("/details");
   });

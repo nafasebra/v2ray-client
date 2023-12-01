@@ -11,7 +11,7 @@ i18n.use(initReactI18next).init({
     fa: fa,
     en: en,
   },
-  lng: 'en',
+  lng: "en",
   fallbackLng: "en",
   interpolation: {
     escapeValue: false,
@@ -29,7 +29,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterElement />
+      <RouterElement queryClient={queryClient} />
     </QueryClientProvider>
   );
 }

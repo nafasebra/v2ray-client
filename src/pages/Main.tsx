@@ -62,7 +62,7 @@ function Main() {
   });
 
   return (
-    <section className="container grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6 mx-auto">
+    <section className="container-app grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6 mx-auto">
       <form onSubmit={handleClick} className="flex flex-col gap-3">
         <label htmlFor={textAreaId} className="text-2xl font-bold">
           {t("main.title")}

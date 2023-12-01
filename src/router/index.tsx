@@ -1,17 +1,25 @@
-import { createBrowserRouter, type RouteObject } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import Main from "@/pages/Main";
 import Details from "@/pages/Details";
 import MasterLayout from "@/components/layout/MasterLayout";
+import ErrorBoundary from "@/pages/ErrorBoundary";
 
-const routes: RouteObject[] = [
-  {
-    element: <MasterLayout />,
-    children: [
-      { path: "/details", element: <Details /> },
-      { path: "/", element: <Main /> },
-    ],
-  },
-];
+import type { QueryClient } from "@tanstack/react-query";
+import detailLoader from "./loaders/detailLoader";
 
-export const router = createBrowserRouter(routes);
+export const createRouter = (queryClient: QueryClient) =>
+  createBrowserRouter([
+    {
+      errorElement: <ErrorBoundary />,
+      element: <MasterLayout />,
+      children: [
+        {
+          path: "/details",
+          element: <Details />,
+          loader: detailLoader(queryClient),
+        },
+        { path: "/", element: <Main /> },
+      ],
+    },
+  ]);

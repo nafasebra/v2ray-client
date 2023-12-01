@@ -7,7 +7,7 @@ type QRCodeContainerProps = {
 function QRCodeContainer({ valueQrCode }: QRCodeContainerProps) {
   return (
     <div className="gradient rounded-lg">
-      <div className="relative z-0 aspect-square p-6">
+      <div className="relative z-0 aspect-square p-3">
         <QRCodeSVG
           value={valueQrCode}
           size={200}

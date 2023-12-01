@@ -46,4 +46,7 @@
   .gradient {
     @apply bg-gradient-to-r from-light-green via-light-pink to-light-purple;
   }
+  .container_app {
+    @apply w-full max-w-screen-2xl mx-auto min-h-[50vh];
+  }
 }

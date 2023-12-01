@@ -1,10 +1,28 @@
+import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+
+import { keys } from "@/api/keys";
+import { getDetails } from "@/api/queries";
+
 import ActiveChart from "@/components/pice/ActiveChart";
 import QRCodeContainer from "@/components/pice/QRCodeContainer";
 import AppLinksSection from "@/components/status/AppLinksSection";
-import { useTranslation } from "react-i18next";
 
 function Details() {
   const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const [searchParams] = useSearchParams();
+
+  const {
+    data: details,
+    // isLoading: detailsLoading,
+    isSuccess: detailsSuccess,
+  } = useQuery({
+    queryFn: () => getDetails(searchParams.get("identifier")!, i18n.language),
+    queryKey: [keys.DETAILS],
+    enabled: !!searchParams.get("identifier")?.trim(),
+  });
 
   return (
     <section className="container mx-auto flex flex-col lg:flex-row gap-20 min-h-[calc(100vh-100px)] p-6">
@@ -12,7 +30,13 @@ function Details() {
         <div className="gradient py-2 px-4 rounded-lg font-bold text-3xl text-black text-center">
           15dzzx1..
         </div>
-        <QRCodeContainer valueQrCode="thisissaman" />
+        <QRCodeContainer
+          valueQrCode={
+            detailsSuccess
+              ? details.data.result.connect_link
+              : "https://google.com/"
+          }
+        />
         <div className="grid grid-cols-2 gap-3">
           <button className="rounded-full py-2 px-3 font-bold text-black gradient">
             {t("details.button.copy")}

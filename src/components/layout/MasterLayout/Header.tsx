@@ -5,7 +5,7 @@ import { keys } from "@/api/keys";
 import { getHeaderButtons } from "@/api/queries";
 
 function Header() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { data, isLoading, isSuccess } = useQuery({
     queryFn: getHeaderButtons,
@@ -22,13 +22,16 @@ function Header() {
   return (
     <nav className="flex items-center justify-between flex-col md:flex-row-reverse gap-4 py-4 px-6">
       <div className="flex items-center gap-6 shrink-0">
-        <img
-          className="h-9"
-          src={
-            "http://content.vip-status.site/site/themes/dark-1/images/Asset3.png"
-          }
-          alt="logo"
-        />
+        <div className="flex items-center gap-3">
+          <img
+            className="h-9"
+            src="/logo.png"
+            alt="logo"
+          />
+          <h1 className="text-2xl text-white font-bold uppercase">
+            {t("title")}
+          </h1>
+        </div>
         <button
           className="cursor-pointer px-2 rounded-lg font-bold text-xl text-black bg-gradient-to-r from-light-green to-light-pink to-purple"
           onClick={handleChangeLanguage}>

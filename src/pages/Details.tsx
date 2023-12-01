@@ -1,12 +1,13 @@
-import { getDetails } from "@/api/queries";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+
+import { keys } from "@/api/keys";
+import { getDetails } from "@/api/queries";
 
 import ActiveChart from "@/components/pice/ActiveChart";
 import QRCodeContainer from "@/components/pice/QRCodeContainer";
 import AppLinksSection from "@/components/status/AppLinksSection";
-import { useTranslation } from "react-i18next";
-import { keys } from "@/api/keys";
-import { useSearchParams } from "react-router-dom";
 
 function Details() {
   const { t } = useTranslation();

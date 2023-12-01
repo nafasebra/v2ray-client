@@ -46,7 +46,9 @@ function Main() {
         const decodedText = atob(base64Text);
         const vmessData = JSON.parse(decodedText);
         uuid = vmessData.id;
-      } catch (e) { /* empty */ }
+      } catch (e) {
+        /* empty */
+      }
     }
 
     if (!uuid.trim())
@@ -55,7 +57,7 @@ function Main() {
         type: "validate",
       });
 
-    navigate("/details");
+    navigate({ pathname: "/details", search: `?identifier=${uuid}` });
   });
 
   return (

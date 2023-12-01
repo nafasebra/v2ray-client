@@ -1,28 +1,20 @@
-import { QRCode } from "react-qrcode-logo";
+import { QRCodeSVG } from "qrcode.react";
 
-type PropType = {
+type QRCodeContainerProps = {
   valueQrCode: string;
 };
 
-function QRCodeContainer({ valueQrCode }: PropType) {
+function QRCodeContainer({ valueQrCode }: QRCodeContainerProps) {
   return (
-    <div className="gradient rounded-lg flex items-center justify-center">
-      <QRCode
-        value={valueQrCode}
-        ecLevel="L"
-        size={200}
-        bgColor="transparent"
-        eyeRadius={[
-          {
-            // top/left eye
-            outer: [10, 10, 0, 10],
-            inner: [0, 10, 10, 10],
-          },
-          [10, 10, 10, 0], // top/right eye
-          [10, 0, 10, 10], // bottom/left
-        ]}
-        id="qrcode"
-      />
+    <div className="gradient rounded-lg">
+      <div className="relative z-0 aspect-square p-6">
+        <QRCodeSVG
+          value={valueQrCode}
+          size={200}
+          className="!w-full !h-full"
+          bgColor="transparent"
+        />
+      </div>
     </div>
   );
 }

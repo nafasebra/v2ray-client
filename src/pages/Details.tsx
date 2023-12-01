@@ -9,7 +9,7 @@ function Details() {
         <div className="gradient py-2 px-4 rounded-lg font-bold text-3xl text-black text-center">
           15dzzx1..
         </div>
-        <QRCodeContainer valueQrCode="fsdf35465" />
+        <QRCodeContainer valueQrCode="thisissaman" />
         <div className="grid grid-cols-2 gap-3">
           <button className="rounded-full py-2 px-6 font-bold text-black gradient">
             Copy

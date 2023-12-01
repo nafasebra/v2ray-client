@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Button from "@/components/ui/Button";
 
 function Main() {
   const firstRender = useRef(true);
@@ -35,7 +36,7 @@ function Main() {
   }, [i18n.language, reset]);
 
   const handleClick = handleSubmit((values) => {
-    let uuid = "";
+    let uuid = values.config;
 
     if (values.config.startsWith("vless://")) {
       const matches = values.config.match(/vless:\/\/(.*?)@/);
@@ -73,11 +74,7 @@ function Main() {
         {!!errors.config && (
           <p className="text-red-500">{errors.config.message}</p>
         )}
-        <button
-          type="submit"
-          className="font-bold gradient text-black rounded-lg py-3 px-6 hover:opacity-50 active:opacity-70 transition-colors">
-          {t("main.check")}
-        </button>
+        <Button type="submit">{t("main.check")}</Button>
       </form>
       <div>
         <img

@@ -5,7 +5,7 @@
 @layer base {
   @font-face {
     font-family: Poppins;
-    src: url("/fonts/Poppins-bold.ttf");
+    src: url("/fonts/Poppins-Bold.ttf");
     font-display: swap;
   }
 
@@ -24,6 +24,13 @@
     background-color: rgb(19, 11, 53);
     min-height: 100vh;
   }
+
+  html[lang="fa"] {
+    font-family: Morabba, sans-serif;
+  }
+  html[lang="en"] {
+    font-family: Poppins, sans-serif;
+  }
 }
 
 @layer components {
@@ -38,12 +45,5 @@
 @layer utilities {
   .gradient {
     @apply bg-gradient-to-r from-light-green via-light-pink to-light-purple;
-  }
-
-  .font-fa {
-    font-family: Morabba, sans-serif;
-  }
-  .font-en {
-    font-family: Poppins, sans-serif;
   }
 }

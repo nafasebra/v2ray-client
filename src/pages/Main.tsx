@@ -1,26 +1,37 @@
 import { z } from "zod";
-import { useId, useMemo } from "react";
+import { useEffect, useId, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 function Main() {
+  const firstRender = useRef(true);
   const textAreaId = useId();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   const validation = useMemo(
     () =>
       z.object({
-        config: z.string().min(1, t('main.form.config.invalid')),
+        config: z.string().min(1, t("main.form.config.invalid")),
       }),
     [t]
   );
 
-  const { register, handleSubmit } = useForm<z.infer<typeof validation>>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<z.infer<typeof validation>>({
     resolver: zodResolver(validation),
   });
+
+  useEffect(() => {
+    if (!firstRender.current) reset();
+    else firstRender.current = false;
+  }, [i18n.language, reset]);
 
   const handleClick = handleSubmit((values) => {
     let uuid = "";
@@ -54,6 +65,9 @@ function Main() {
           {...register("config")}
           className="text-white p-3 h-48 border-4 border-white bg-transparent rounded-xl focus:outline-none resize-none"
           rows={5}></textarea>
+        {!!errors.config && (
+          <p className="text-red-500">{errors.config.message}</p>
+        )}
         <button
           type="submit"
           className="font-bold gradient text-black rounded-lg py-3 px-6 hover:opacity-50 active:opacity-70 transition-colors">

@@ -15,6 +15,7 @@ function Header() {
   const handleChangeLanguage = () => {
     i18n.changeLanguage(i18n.language === "en" ? "fa" : "en", () => {
       document.dir = i18n.language === "en" ? "ltr" : "rtl";
+      document.documentElement.setAttribute("lang", i18n.language);
     });
   };
 

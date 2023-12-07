@@ -23,6 +23,8 @@ function Details() {
     retry: false,
   });
 
+  console.log(details)
+
   return (
     <section className="container-app mx-auto flex flex-col lg:flex-row gap-20 min-h-[calc(100vh-100px)] p-6">
       <aside className="w-full lg:w-[20%] space-y-3">
@@ -58,25 +60,40 @@ function Details() {
                 <p className="font-bold gradient bg-clip-text text-transparent">
                   {t("details.status.expire")}
                 </p>
+                <p className="font-bold gradient bg-clip-text text-transparent text-right">
+                  {details?.data.result.FrontEnd.expiryTimeShort}
+                </p>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <p className="font-bold gradient bg-clip-text text-transparent">
                   {t("details.status.totalTraffic")}
+                </p>
+                <p className="font-bold gradient bg-clip-text text-transparent text-right">
+                  {details?.data.result.FrontEnd.total}
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <p className="font-bold gradient bg-clip-text text-transparent">
                   {t("details.status.totalUsage")}
                 </p>
+                <p className="font-bold gradient bg-clip-text text-transparent text-right">
+                  {details?.data.result.FrontEnd.totalUsed}
+                </p>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <p className="font-bold gradient bg-clip-text text-transparent">
                   {t("details.status.download")}
                 </p>
+                <p className="font-bold gradient bg-clip-text text-transparent text-right">
+                  {details?.data.result.FrontEnd.down}
+                </p>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <p className="font-bold gradient bg-clip-text text-transparent">
                   {t("details.status.upload")}
+                </p>
+                <p className="font-bold gradient bg-clip-text text-transparent text-right">
+                  {details?.data.result.FrontEnd.up}
                 </p>
               </div>
             </div>

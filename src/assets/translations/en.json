@@ -1,6 +1,6 @@
 {
   "translation": {
-    "title": "status",
+    "title": "Status",
     "main": {
       "title": "Your Configuration",
       "check": "Check",
@@ -11,15 +11,20 @@
       }
     },
     "details": {
-      "traffic": "traffic",
+      "traffic": "Total",
       "button": {
         "copy": "Copy",
         "change": "Change",
         "copyStatus": "Copy Status",
         "shareStatus": "Share Status"
       },
+      "modal": {
+        "confirm_1": "Are you sure you want to change your config connection url?",
+        "confirm_2": "This action is irreversible and will make your previous config connection url unusable."
+      },
       "status": {
         "active": "Active",
+        "deactive": "Deactive",
         "expire": "Expire",
         "totalTraffic": "Total Traffic",
         "totalUsage": "Total Usage",

@@ -54,6 +54,7 @@ export interface IDetails {
       reset: number;
       totalUsed: number;
       inboundRemark: string;
+      online: boolean;
     };
     FrontEnd: {
       expiryTime: string;
@@ -64,9 +65,7 @@ export interface IDetails {
       total: string;
       trafficRemaining: string;
       email: string;
-      texts: {
-        statusText: string;
-      };
+      status: boolean;
       infoText: string;
     };
     connect_link: string;

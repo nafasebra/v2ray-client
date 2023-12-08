@@ -7,12 +7,14 @@ import ErrorBoundary from "@/pages/ErrorBoundary";
 
 import type { QueryClient } from "@tanstack/react-query";
 import detailLoader from "./loaders/detailLoader";
+import settingsLoader from "./loaders/settingsLoader";
 
 export const createRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
     {
       errorElement: <ErrorBoundary />,
       element: <MasterLayout />,
+      loader: settingsLoader(queryClient),
       children: [
         {
           path: "/details",

@@ -4,8 +4,11 @@ import { keys } from "@/api/keys";
 import { getAppsLink } from "@/api/queries";
 
 import { IApp, IAppsLink } from "@/types";
+import { useGradientStyle } from "@/theme/utils/gradient";
 
 function AppLinksSection() {
+  const bgStyle = useGradientStyle();
+
   const { data, isLoading, isSuccess } = useQuery({
     queryFn: getAppsLink,
     queryKey: [keys.APPS],
@@ -38,7 +41,9 @@ function AppLinksSection() {
       {isSuccess &&
         data?.data?.map((item: IAppsLink) => (
           <div key={item.platform} className="space-y-2">
-            <div className="gradient py-2 px-4 rounded-lg font-bold text-xl text-black text-center">
+            <div
+              style={bgStyle}
+              className="py-2 px-4 rounded-lg font-bold text-xl text-black text-center">
               {item.platform}
             </div>
             {item?.apps?.map((app: IApp) => (

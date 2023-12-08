@@ -1,3 +1,4 @@
+import { useGradientStyle } from "@/theme/utils/gradient";
 import { QRCodeSVG } from "qrcode.react";
 
 type QRCodeContainerProps = {
@@ -5,8 +6,10 @@ type QRCodeContainerProps = {
 };
 
 function QRCodeContainer({ valueQrCode }: QRCodeContainerProps) {
+  const bgStyle = useGradientStyle()
+
   return (
-    <div className="gradient rounded-lg">
+    <div style={bgStyle} className="rounded-lg">
       <div className="relative z-0 aspect-square p-3">
         <QRCodeSVG
           value={valueQrCode}

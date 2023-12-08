@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/api/keys";
 import { getHeaderButtons } from "@/api/queries";
 import { Link, useLocation } from "react-router-dom";
+import Button from "@/components/ui/Button";
 
 function Header() {
   const { pathname } = useLocation();
@@ -24,17 +25,13 @@ function Header() {
   return (
     <nav className="flex items-center justify-between flex-col md:flex-row-reverse gap-4 py-4 px-6">
       <div className="flex items-center gap-6 shrink-0">
+        <Button size="xs" onClick={handleChangeLanguage}>{i18n.language === 'en' ? 'fa' : 'en'}</Button>
         <div className="flex items-center gap-3">
           <img className="h-9" src="/logo.png" alt="logo" />
           <h1 className="text-2xl text-white font-bold uppercase">
             {t("title")}
           </h1>
         </div>
-        <button
-          className="cursor-pointer px-2 rounded-lg font-bold text-xl text-black bg-gradient-to-r from-light-green to-light-pink to-purple"
-          onClick={handleChangeLanguage}>
-          {i18n.language}
-        </button>
       </div>
       <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-2">
         {pathname !== "/" && (

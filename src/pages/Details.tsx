@@ -7,9 +7,9 @@ import { getDetails } from "@/api/queries";
 import { useGradientStyle } from "@/theme/utils/gradient";
 
 import Button from "@/components/ui/Button";
-import ActiveChart from "@/components/pice/ActiveChart";
+import ActiveChart from "@/components/piece/ActiveChart";
 import ConfirmModal from "@/components/modal/ConfirmModal";
-import QRCodeContainer from "@/components/pice/QRCodeContainer";
+import QRCodeContainer from "@/components/piece/QRCodeContainer";
 import AppLinksSection from "@/components/status/AppLinksSection";
 import {
   ArrowDownTrayIcon,

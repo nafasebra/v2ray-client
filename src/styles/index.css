@@ -50,7 +50,28 @@
   .gradient {
     @apply bg-gradient-to-r from-light-green via-light-pink to-light-purple;
   }
-  .container_app {
-    @apply w-full max-w-screen-2xl mx-auto min-h-[50vh];
+  .container-app {
+    @apply w-full max-w-screen-2xl mx-auto;
   }
+  .font-fa {
+    font-family: Morabba, sans-serif;
+  }
+  .font-en {
+    font-family: Poppins, sans-serif;
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
 }

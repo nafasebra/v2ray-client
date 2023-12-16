@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^3.3.2",
     "@tanstack/react-query": "^5.8.4",
     "axios": "^1.6.2",
+    "crisp-sdk-web": "^1.0.21",
     "i18next": "^23.7.6",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",

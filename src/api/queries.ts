@@ -1,23 +1,41 @@
+import { toFormData } from "axios";
 import { api } from ".";
-import { IButtonsResult, IAppsLink, ISettingApp, IDetails } from "@/types";
+import {
+  IButtonsResult,
+  IAppsLink,
+  ISettingApp,
+  IDetails,
+  IDetailsReq,
+} from "@/types";
 
-export function getHeaderButtons() {
-  return api.get<IButtonsResult[]>("/api/FrontEnd/buttons.php");
+export function getHeaderButtons(lang: string) {
+  return api.get<IButtonsResult[]>("/api/FrontEnd/buttons.php", {
+    params: { lang },
+  });
 }
 
-export function getAppsLink() {
-  return api.get<IAppsLink[]>("/api/FrontEnd/apps.php");
+export function getAppsLink(lang: string) {
+  return api.get<IAppsLink[]>("/api/FrontEnd/apps.php", { params: { lang } });
 }
 
-export function getSetting() {
-  return api.get<ISettingApp>("/settings.php");
+export function getSetting(lang: string) {
+  return api.get<ISettingApp>("/settings.php", { params: { lang } });
 }
 
-export function getDetails(uuid: string, lang?: string) {
-  return api.get<IDetails>("/api/get/index.php", {
-    params: {
+export function getDetails({ uuid, lang, hash }: IDetailsReq) {
+  return api.post<IDetails>(
+    "/api/get/index.php",
+    toFormData({
       text: uuid,
+      hash: hash,
       lang,
-    },
+    }),
+    { params: { hash } }
+  );
+}
+
+export function changeHash(hash: string) {
+  return api.get<IDetails>("/api/change/index.php", {
+    params: { hash },
   });
 }

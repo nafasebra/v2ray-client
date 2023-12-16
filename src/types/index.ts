@@ -10,6 +10,7 @@ export interface IButtonsResult {
 export interface IApp {
   name: string;
   link: string;
+  icon?: string;
 }
 export interface IAppsLink {
   platform: string;
@@ -70,4 +71,10 @@ export interface IDetails {
     };
     connect_link: string;
   };
+}
+
+export interface IDetailsReq {
+  uuid?: string;
+  lang?: string;
+  hash?: string;
 }

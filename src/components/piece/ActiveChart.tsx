@@ -7,7 +7,7 @@ interface ActiveChartProps {
 }
 
 function ActiveChart(props: ActiveChartProps) {
-  const bgStyle = useConicStyle((props.used / props.total) * 100);
+  const bgStyle = useConicStyle(props.total === 0 ? 100 : 100 - (props.used / props.total) * 100);
   const currentTheme = useActiveTheme();
 
   return (
@@ -22,7 +22,7 @@ function ActiveChart(props: ActiveChartProps) {
             background: currentTheme.chartBg,
           }}
           className="w-full aspect-square max-w-[calc(150px-1.5rem)] absolute top-3 left-3 rounded-full -z-[1]"></div>
-        <p>{props.text}</p>
+        <p className="text-xl">{props.text}</p>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
 import { keys } from "@/api/keys";
@@ -7,10 +8,11 @@ import { IApp, IAppsLink } from "@/types";
 import { useGradientStyle } from "@/theme/utils/gradient";
 
 function AppLinksSection() {
+  const { i18n } = useTranslation();
   const bgStyle = useGradientStyle();
 
   const { data, isLoading, isSuccess } = useQuery({
-    queryFn: getAppsLink,
+    queryFn: () => getAppsLink(i18n.language),
     queryKey: [keys.APPS],
   });
 
@@ -49,9 +51,19 @@ function AppLinksSection() {
             {item?.apps?.map((app: IApp) => (
               <a
                 key={app.name}
-                className="flex justify-center border border-white rounded-lg py-2 px-4 text-center"
+                className="flex justify-between items-center border border-white rounded-lg py-2 px-4 text-center"
                 href={app.link}>
-                {app.name}
+                <div className="w-6 h-6 shrink-0" />
+                <span>{app.name}</span>
+                {app.icon ? (
+                  <img
+                    className="w-6 h-6 object-contain shrink-0"
+                    src={app.icon}
+                    alt={app.name}
+                  />
+                ) : (
+                  <div className="h-6 w-6 shrink-0" />
+                )}
               </a>
             ))}
           </div>

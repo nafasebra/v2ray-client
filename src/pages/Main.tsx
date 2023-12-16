@@ -1,16 +1,28 @@
 import { z } from "zod";
-import { useEffect, useId, useMemo, useRef } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "@/components/ui/Button";
+import { useQueryClient } from "@tanstack/react-query";
+import { getDetails } from "@/api/queries";
+import { keys } from "@/api/keys";
+import { useActiveTheme } from "@/theme/utils/gradient";
+import { Crisp } from "crisp-sdk-web";
 
 function Main() {
+  const { mainPhoto } = useActiveTheme();
   const firstRender = useRef(true);
   const textAreaId = useId();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const [detailsPending, setDetailsPending] = useState(false);
+
+  useEffect(() => {
+    Crisp.configure("", { autoload: false });
+  }, []);
 
   const validation = useMemo(
     () =>
@@ -25,7 +37,6 @@ function Main() {
     handleSubmit,
     reset,
     formState: { errors },
-    setError,
   } = useForm<z.infer<typeof validation>>({
     resolver: zodResolver(validation),
   });
@@ -35,34 +46,30 @@ function Main() {
     else firstRender.current = false;
   }, [i18n.language, reset]);
 
-  const handleClick = handleSubmit((values) => {
-    let uuid = values.config;
+  const handleClick = handleSubmit(async (values) => {
+    setDetailsPending(true);
 
-    if (values.config.startsWith("vless://")) {
-      const matches = values.config.match(/vless:\/\/(.*?)@/);
-      if (matches && matches.length > 1) uuid = matches[1];
-    } else if (values.config.startsWith("vmess://")) {
-      const base64Text = values.config.substring("vmess://".length);
-      try {
-        const decodedText = atob(base64Text);
-        const vmessData = JSON.parse(decodedText);
-        uuid = vmessData.id;
-      } catch (e) {
-        /* empty */
-      }
-    }
-
-    if (!uuid.trim())
-      return setError("config", {
-        message: t("main.form.config.invalid"),
-        type: "validate",
+    try {
+      const data = await queryClient.fetchQuery({
+        queryFn: () => getDetails({ uuid: values.config, lang: i18n.language }),
+        queryKey: [keys.DETAILS, values.config, i18n.language],
       });
 
-    navigate({ pathname: "/details", search: `?identifier=${uuid}` });
+      queryClient.setQueryData(
+        [keys.DETAILS, data.data.result.hash, i18n.language],
+        data
+      );
+
+      navigate({ pathname: `/details/${data.data.result.hash}` });
+    } catch (e) {
+      /* empty */
+    }
+
+    setDetailsPending(false);
   });
 
   return (
-    <section className="container-app grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6 mx-auto">
+    <section className="container-app grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6">
       <form onSubmit={handleClick} className="flex flex-col gap-3">
         <label htmlFor={textAreaId} className="text-2xl font-bold">
           {t("main.title")}
@@ -74,11 +81,13 @@ function Main() {
         {!!errors.config && (
           <p className="text-red-500">{errors.config.message}</p>
         )}
-        <Button type="submit">{t("main.check")}</Button>
+        <Button disabled={detailsPending} type="submit">
+          {t("main.check")}
+        </Button>
       </form>
       <div>
         <img
-          src="http://content.vip-status.site/site/themes/dark-1/images/Asset2.png"
+          src={mainPhoto}
           alt="banner"
           className="w-full max-w-xl mx-auto md:ml-auto"
         />

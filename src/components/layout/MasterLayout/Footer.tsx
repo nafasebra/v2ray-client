@@ -2,10 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 
 import { keys } from "@/api/keys";
 import { getSetting } from "@/api/queries";
+import { useTranslation } from "react-i18next";
 
 function Footer() {
+  const { i18n } = useTranslation();
   const { data, isSuccess } = useQuery({
-    queryFn: getSetting,
+    queryFn: () => getSetting(i18n.language),
     queryKey: [keys.SETTING],
   });
 

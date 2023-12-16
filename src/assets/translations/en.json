@@ -1,8 +1,9 @@
 {
   "translation": {
+    "copied": "Copy Success",
     "title": "Status",
     "main": {
-      "title": "Your Configuration",
+      "title": "Your Config",
       "check": "Check",
       "form": {
         "config": {
@@ -23,6 +24,7 @@
         "confirm_2": "This action is irreversible and will make your previous config connection url unusable."
       },
       "status": {
+        "current": "Status",
         "active": "Active",
         "deactive": "Deactive",
         "expire": "Expire",
@@ -31,6 +33,10 @@
         "download": "Download",
         "upload": "Upload"
       }
+    },
+    "confirm_modal": {
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }

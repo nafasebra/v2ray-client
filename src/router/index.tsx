@@ -2,12 +2,11 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Main from "@/pages/Main";
 import Details from "@/pages/Details";
-import MasterLayout from "@/components/layout/MasterLayout";
 import ErrorBoundary from "@/pages/ErrorBoundary";
+import settingsLoader from "./loaders/settingsLoader";
+import MasterLayout from "@/components/layout/MasterLayout";
 
 import type { QueryClient } from "@tanstack/react-query";
-import detailLoader from "./loaders/detailLoader";
-import settingsLoader from "./loaders/settingsLoader";
 
 export const createRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
@@ -17,9 +16,8 @@ export const createRouter = (queryClient: QueryClient) =>
       loader: settingsLoader(queryClient),
       children: [
         {
-          path: "/details",
+          path: "/details/:hash",
           element: <Details />,
-          loader: detailLoader(queryClient),
         },
         { path: "/", element: <Main /> },
       ],

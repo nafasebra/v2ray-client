@@ -1,28 +1,23 @@
 import { z } from "zod";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useId, useMemo, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Button from "@/components/ui/Button";
 import { useQueryClient } from "@tanstack/react-query";
-import { getDetails } from "@/api/queries";
+
 import { keys } from "@/api/keys";
+import { getDetails } from "@/api/queries";
+import Button from "@/components/ui/Button";
 import { useActiveTheme } from "@/theme/utils/gradient";
-import { Crisp } from "crisp-sdk-web";
 
 function Main() {
   const { mainPhoto } = useActiveTheme();
-  const firstRender = useRef(true);
   const textAreaId = useId();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [detailsPending, setDetailsPending] = useState(false);
-
-  useEffect(() => {
-    Crisp.configure("", { autoload: false });
-  }, []);
 
   const validation = useMemo(
     () =>
@@ -35,18 +30,12 @@ function Main() {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<z.infer<typeof validation>>({
     resolver: zodResolver(validation),
   });
 
-  useEffect(() => {
-    if (!firstRender.current) reset();
-    else firstRender.current = false;
-  }, [i18n.language, reset]);
-
-  const handleClick = handleSubmit(async (values) => {
+  const handleClick = handleSubmit(async values => {
     setDetailsPending(true);
 
     try {

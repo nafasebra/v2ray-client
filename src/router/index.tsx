@@ -15,11 +15,11 @@ export const createRouter = (queryClient: QueryClient) =>
       element: <MasterLayout />,
       loader: settingsLoader(queryClient),
       children: [
+        { path: "/", element: <Main /> },
         {
           path: "/details/:hash",
           element: <Details />,
         },
-        { path: "/", element: <Main /> },
       ],
     },
   ]);

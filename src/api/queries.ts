@@ -1,11 +1,12 @@
 import { toFormData } from "axios";
-import { api } from ".";
+import { api, cdn } from ".";
 import {
   IButtonsResult,
   IAppsLink,
   ISettingApp,
   IDetails,
   IDetailsReq,
+  ITheme,
 } from "@/types";
 
 export function getHeaderButtons(lang: string) {
@@ -38,4 +39,8 @@ export function changeHash(hash: string) {
   return api.get<IDetails>("/api/change/index.php", {
     params: { hash },
   });
+}
+
+export function getTheme(name: string) {
+  return cdn.get<ITheme>(`/themes/${name}.json`);
 }

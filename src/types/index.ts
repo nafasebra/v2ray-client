@@ -78,3 +78,16 @@ export interface IDetailsReq {
   lang?: string;
   hash?: string;
 }
+
+export interface ITheme {
+  from: string;
+  via: string;
+  to: string;
+  chartBg: string;
+  bg: string;
+  logo: string;
+  btnColor: string;
+  htmlColor: string;
+  title: string;
+  mainPhoto: string;
+}

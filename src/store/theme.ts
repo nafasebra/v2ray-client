@@ -1,17 +1,38 @@
 import { create } from "zustand";
+import type { QueryClient } from "@tanstack/react-query";
+
+import type { ITheme } from "@/types";
+import { getTheme } from "@/api/queries";
+import { keys } from "@/api/keys";
 
 interface UseTheme {
-  globalLoading: boolean;
   theme: string;
   isConfigured: boolean;
-  setTheme: (name: string) => void;
-  setGlobalLoading: (bool: boolean) => void;
+  crispLoaded: boolean;
+  setTheme: (query: QueryClient, name: string) => Promise<void>;
+  themes: {
+    [prop: string]: ITheme;
+  };
 }
 
-export const useTheme = create<UseTheme>((set) => ({
-  globalLoading: false,
+export const useTheme = create<UseTheme>(set => ({
   isConfigured: false,
-  theme: "dark1",
-  setTheme: (name) => set({ theme: name }),
-  setGlobalLoading: (bool) => set({ globalLoading: bool }),
+  crispLoaded: false,
+  theme: "",
+  setTheme: async (query, name) => {
+    try {
+      const theme = await query.fetchQuery({
+        queryFn: () => getTheme(name),
+        queryKey: [keys.THEME, name],
+      });
+
+      set(prev => ({
+        theme: name,
+        themes: { ...prev.themes, [name]: theme.data },
+      }));
+    } catch (e) {
+      /* empty */
+    }
+  },
+  themes: {},
 }));

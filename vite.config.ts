@@ -5,7 +5,7 @@ import * as path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // base: 'https://content.patrick-status.site/site/panel-assets/',
+  base: 'https://content.patrick-status.site/site/panel-assets/default-style/',
   resolve: {
     alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
   },

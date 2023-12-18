@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bgImg: rgb(0, 0, 0);
-}
-
 @layer base {
   @font-face {
     font-family: Poppins;

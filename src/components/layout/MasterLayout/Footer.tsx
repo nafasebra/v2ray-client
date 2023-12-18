@@ -18,7 +18,13 @@ function Footer() {
         PatrickStatus
       </a>{" "}
       company */}
-      {isSuccess ? `© ${data.data.footer_text_en}` : null}
+      {isSuccess
+        ? i18n.language === "fa"
+          ? data.data.footer_text_fa
+          : i18n.language === "en"
+          ? data.data.footer_text_en
+          : null
+        : null}
     </footer>
   );
 }

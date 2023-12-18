@@ -80,6 +80,7 @@ export interface IDetailsReq {
 }
 
 export interface ITheme {
+  crispColor: string;
   from: string;
   via: string;
   to: string;
@@ -90,4 +91,9 @@ export interface ITheme {
   htmlColor: string;
   title: string;
   mainPhoto: string;
+}
+
+export interface IErrorResult {
+  error: string;
+  ok: boolean;
 }

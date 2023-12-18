@@ -1,12 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
+import type { QueryClient } from "@tanstack/react-query";
+
+import settingsLoader from "./loaders/settingsLoader";
 
 import Main from "@/pages/Main";
 import Details from "@/pages/Details";
+import NotFound from "@/pages/NotFound";
 import ErrorBoundary from "@/pages/ErrorBoundary";
-import settingsLoader from "./loaders/settingsLoader";
-import MasterLayout from "@/components/layout/MasterLayout";
 
-import type { QueryClient } from "@tanstack/react-query";
+import MasterLayout from "@/components/layout/MasterLayout";
 
 export const createRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
@@ -19,6 +21,10 @@ export const createRouter = (queryClient: QueryClient) =>
         {
           path: "/details/:hash",
           element: <Details />,
+        },
+        {
+          path: "*",
+          element: <NotFound />,
         },
       ],
     },

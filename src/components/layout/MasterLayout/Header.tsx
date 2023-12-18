@@ -3,14 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 
 import { keys } from "@/api/keys";
 import { getHeaderButtons } from "@/api/queries";
-import { Link, useLocation } from "react-router-dom";
-import Button from "@/components/ui/Button";
 import { useActiveTheme } from "@/theme/utils/gradient";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+
+import Button from "@/components/ui/Button";
 
 function Header() {
   const { logo } = useActiveTheme();
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
+  const [, setSearchParams] = useSearchParams();
 
   const { data, isLoading, isSuccess } = useQuery({
     queryFn: () => getHeaderButtons(i18n.language),
@@ -21,6 +23,10 @@ function Header() {
     i18n.changeLanguage(i18n.language === "en" ? "fa" : "en", () => {
       document.dir = i18n.language === "en" ? "ltr" : "rtl";
       document.documentElement.setAttribute("lang", i18n.language);
+      setSearchParams(search => {
+        search.set("lang", i18n.language);
+        return search;
+      });
     });
   };
 

@@ -73,7 +73,7 @@ function Details() {
       )}
       <section className="max-w-md mx-auto lg:container-app flex flex-col items-stretch justify-center min-h-[calc(100vh-120px)] p-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
-          <aside className="w-full lg:col-span-1 space-y-3">
+          <aside className="w-full lg:col-span-1 space-y-3 flex flex-col items-stretch pb-3.5">
             <div
               style={bgStyle}
               className="py-2 px-4 rounded-lg font-bold text-3xl text-black text-center truncate font-en">
@@ -82,7 +82,7 @@ function Details() {
             <QRCodeContainer
               valueQrCode={details?.data.result.connect_link || ""}
             />
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
+            <div className="!mt-auto grid grid-cols-1 xl:grid-cols-2 gap-3">
               <Button
                 round
                 size="sm"

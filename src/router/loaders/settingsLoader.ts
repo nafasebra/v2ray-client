@@ -12,7 +12,6 @@ type SettingsLoader = (queryClient: QueryClient) => LoaderFunction;
 
 const settingsLoader: SettingsLoader = queryClient => {
   return async ({ request }) => {
-    console.log('test')
     const { searchParams } = new URL(request.url);
 
     const { data } = await queryClient.fetchQuery({

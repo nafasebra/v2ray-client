@@ -1,58 +1,58 @@
 import { getI18n } from "react-i18next";
-import { QueryClient } from "@tanstack/react-query";
+import { changeLanguage } from "i18next";
+import { ChatboxColors, Crisp } from "crisp-sdk-web";
 import type { LoaderFunction } from "react-router-dom";
+
 import { keys } from "@/api/keys";
+import initI18n from "@/lib/i18next";
+import { defaultTheme } from "@/theme";
 import { useTheme } from "@/store/theme";
 import { getSetting } from "@/api/queries";
-import { defaultTheme } from "@/theme";
-import { ChatboxColors, Crisp } from "crisp-sdk-web";
-import { changeLanguage } from "i18next";
+import queryClient from "@/lib/react-query";
 
-type SettingsLoader = (queryClient: QueryClient) => LoaderFunction;
+const settingsLoader: LoaderFunction = async ({ request }) => {
+  if (!getI18n()) await initI18n();
 
-const settingsLoader: SettingsLoader = queryClient => {
-  return async ({ request }) => {
-    const { searchParams } = new URL(request.url);
+  const { searchParams } = new URL(request.url);
 
-    const { data } = await queryClient.fetchQuery({
-      queryFn: () => getSetting(getI18n().language),
-      queryKey: [keys.SETTING],
-    });
+  const { data } = await queryClient.fetchQuery({
+    queryFn: () => getSetting(getI18n().language),
+    queryKey: [keys.SETTING],
+  });
 
-    await useTheme.getState().setTheme(queryClient, data.theme);
-    const currentTheme = useTheme.getState().themes[data.theme] ?? defaultTheme;
+  await useTheme.getState().setTheme(queryClient, data.theme);
+  const currentTheme = useTheme.getState().themes[data.theme] ?? defaultTheme;
 
-    if (!useTheme.getState().isConfigured) {
-      const favicon = `<link ref="icon" type="image/png" href="${currentTheme.logo}" />`;
+  if (!useTheme.getState().isConfigured) {
+    const favicon = `<link ref="icon" type="image/png" href="${data.logo}" />`;
 
-      const lang = searchParams.get("lang");
-      document.documentElement.style.setProperty("--bgImg", currentTheme.bg);
-      document.head.innerHTML += favicon;
-      document.title = currentTheme.title;
+    const lang = searchParams.get("lang");
+    document.documentElement.style.setProperty("--bgImg", currentTheme.bg);
+    document.head.innerHTML += favicon;
+    document.title = currentTheme.title;
 
-      if (lang) {
-        changeLanguage(lang);
-        document.dir = lang === "en" ? "ltr" : "rtl";
-        document.documentElement.setAttribute("lang", lang);
-      }
-
-      useTheme.setState({ isConfigured: true });
+    if (lang) {
+      changeLanguage(lang);
+      document.dir = lang === "en" ? "ltr" : "rtl";
+      document.documentElement.setAttribute("lang", lang);
     }
 
-    if (!useTheme.getState().crispLoaded) {
-      try {
-        type CColor = keyof typeof ChatboxColors;
+    useTheme.setState({ isConfigured: true });
+  }
 
-        Crisp.setColorTheme(ChatboxColors[currentTheme.crispColor as CColor]);
-        Crisp.configure(data.crisp_id);
-        useTheme.setState({ crispLoaded: true });
-      } catch (e) {
-        /* empty */
-      }
+  if (!useTheme.getState().crispLoaded) {
+    try {
+      type CColor = keyof typeof ChatboxColors;
+
+      Crisp.setColorTheme(ChatboxColors[currentTheme.crispColor as CColor]);
+      Crisp.configure(data.crisp_id);
+      useTheme.setState({ crispLoaded: true });
+    } catch (e) {
+      /* empty */
     }
+  }
 
-    return null;
-  };
+  return null;
 };
 
 export default settingsLoader;

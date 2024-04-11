@@ -23,6 +23,7 @@ export interface ISettingApp {
   footer_text_en: string;
   footer_text_fa: string;
   panels_cache_exp: string;
+  logo: string;
 }
 
 export interface IDetails {

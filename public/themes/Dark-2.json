@@ -1,0 +1,13 @@
+{
+  "crispColor": "Purple",
+  "from": "#96e0da",
+  "via": "#eaccf8",
+  "to": "#937ef3",
+  "chartBg": "#4d4185",
+  "bg": "url(\"https://picsum.photos/1920/1080\")",
+  "logo": "https://picsum.photos/400",
+  "btnColor": "rgb(0,0,0)",
+  "htmlColor": "rgb(255,255,255)",
+  "title": "Client V2RAY",
+  "mainPhoto": "https://picsum.photos/800"
+}

@@ -1,13 +1,8 @@
-import RouterElement from "@/router/RouterElement";
+import { RouterProvider } from "react-router-dom";
+import { router } from "@/router";
 
-import type { QueryClient } from "@tanstack/react-query";
-
-interface AppProps {
-  queryClient: QueryClient;
-}
-
-function App(props: AppProps) {
-  return <RouterElement queryClient={props.queryClient} />;
+function App() {
+  return <RouterProvider router={router} />;
 }
 
 export default App;

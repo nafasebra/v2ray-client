@@ -1,15 +1,18 @@
-import { useTranslation } from "react-i18next";
+import { getI18n, useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
 import { keys } from "@/api/keys";
-import { getHeaderButtons } from "@/api/queries";
-import { useActiveTheme } from "@/theme/utils/gradient";
+import { getHeaderButtons, getSetting } from "@/api/queries";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 import Button from "@/components/ui/Button";
 
 function Header() {
-  const { logo } = useActiveTheme();
+  const { data: settingsData } = useQuery({
+    queryFn: () => getSetting(getI18n().language),
+    queryKey: [keys.SETTING],
+  });
+
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
   const [, setSearchParams] = useSearchParams();
@@ -77,7 +80,7 @@ function Header() {
           <h1 className="text-2xl text-white font-bold uppercase">
             {t("title")}
           </h1>
-          <img className="h-9" src={logo} alt="logo" />
+          <img className="h-9" src={settingsData?.data.logo} alt="logo" />
         </div>
       </div>
       <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-2">

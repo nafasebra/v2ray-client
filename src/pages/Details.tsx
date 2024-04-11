@@ -73,7 +73,7 @@ function Details() {
       )}
       <section className="max-w-md mx-auto lg:container-app flex flex-col items-stretch justify-center min-h-[calc(100vh-120px)] p-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
-          <aside className="w-full lg:col-span-1 space-y-3 flex flex-col items-stretch pb-3.5">
+          <aside className="w-full lg:col-span-1 gap-3 flex flex-col items-stretch pb-3.5">
             <div
               style={bgStyle}
               className="py-2 px-4 rounded-lg font-bold text-3xl text-black text-center truncate font-en">
@@ -82,7 +82,7 @@ function Details() {
             <QRCodeContainer
               valueQrCode={details?.data.result.connect_link || ""}
             />
-            <div className="!mt-auto grid grid-cols-1 xl:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-3">
               <Button
                 round
                 size="sm"
@@ -127,8 +127,7 @@ function Details() {
                               style={bgStyle}
                               className="bg-clip-text text-transparent">
                               {t("details.status.active")}
-                            </span>{" "}
-                            <span className="animate-pulse">🟢</span>
+                            </span>
                           </p>
                         ) : details?.data.result.FrontEnd.status ? (
                           <p>
@@ -136,8 +135,7 @@ function Details() {
                               style={bgStyle}
                               className="bg-clip-text text-transparent">
                               {t("details.status.active")}
-                            </span>{" "}
-                            <span>🟢</span>
+                            </span>
                           </p>
                         ) : (
                           <p>
@@ -145,12 +143,19 @@ function Details() {
                               style={bgStyle}
                               className="bg-clip-text text-transparent">
                               {t("details.status.deactive")}
-                            </span>{" "}
-                            <span>🔴</span>
+                            </span>
                           </p>
                         )}
                       </div>
-                      <div className="w-5 h-5" />
+                      <div className="w-5 h-5 shrink-0">
+                        {details?.data.result.stat.online ? (
+                          <span className="block animate-pulse w-4 h-4 ml-1 mt-0.5 rounded-full bg-green-600" />
+                        ) : details?.data.result.FrontEnd.status ? (
+                          <span className="block w-4 h-4 ml-1 mt-0.5 rounded-full bg-green-600" />
+                        ) : (
+                          <span className="block w-4 h-4 ml-1 mt-0.5 rounded-full bg-red-600" />
+                        )}
+                      </div>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-2">

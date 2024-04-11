@@ -1,6 +1,7 @@
-import { useRouter } from "@/store/router";
-import { IErrorResult } from "@/types";
 import axios, { AxiosError } from "axios";
+
+import { router } from "@/router";
+import { IErrorResult } from "@/types";
 
 const baseUrl = new URL("/PatrickStats", window.location.origin);
 
@@ -9,7 +10,6 @@ export const api = axios.create({
 });
 
 api.interceptors.response.use(undefined, err => {
-  const { router } = useRouter.getState();
   const axiosError = err as AxiosError<IErrorResult>;
 
   router?.navigate(

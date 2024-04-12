@@ -81,6 +81,9 @@ export interface IDetailsReq {
 }
 
 export interface ITheme {
+  primary_text_color: string;
+  secondary_text_color: string;
+  show_home: boolean;
   crispColor: string;
   from: string;
   via: string;
@@ -92,6 +95,8 @@ export interface ITheme {
   htmlColor: string;
   title: string;
   mainPhoto: string;
+  font_fa: string;
+  font_en: string;
 }
 
 export interface IErrorResult {

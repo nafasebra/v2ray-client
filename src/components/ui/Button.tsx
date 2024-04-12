@@ -1,4 +1,4 @@
-import { useGradientStyle } from "@/theme/utils/gradient";
+import { useActiveTheme, useGradientStyle } from "@/theme/utils/gradient";
 import { ComponentPropsWithRef } from "react";
 
 interface ButtonProps extends ComponentPropsWithRef<"button"> {
@@ -21,13 +21,17 @@ export default function Button({
       ? "py-3 px-4"
       : "py-3 px-4";
   const borderRadius = round ? "rounded-full" : "rounded-lg";
-
+  const theme = useActiveTheme();
   const bgStyle = useGradientStyle();
 
   return (
     <button
-      style={props.disabled ? undefined : bgStyle}
-      className={`font-bold text-black ${borderRadius} ${padding} hover:brightness-125 active:brightness-75 transition-all disabled:bg-gray-400/60 disabled:animate-pulse ${className}`}
+      style={
+        props.disabled
+          ? undefined
+          : { ...bgStyle, color: theme.primary_text_color }
+      }
+      className={`font-bold ${borderRadius} ${padding} hover:brightness-125 active:brightness-75 transition-all disabled:bg-gray-400/60 disabled:animate-pulse ${className}`}
       {...props}></button>
   );
 }

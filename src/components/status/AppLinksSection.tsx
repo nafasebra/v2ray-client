@@ -5,9 +5,10 @@ import { keys } from "@/api/keys";
 import { getAppsLink } from "@/api/queries";
 
 import { IApp, IAppsLink } from "@/types";
-import { useGradientStyle } from "@/theme/utils/gradient";
+import { useActiveTheme, useGradientStyle } from "@/theme/utils/gradient";
 
 function AppLinksSection() {
+  const theme = useActiveTheme();
   const { i18n } = useTranslation();
   const bgStyle = useGradientStyle();
 
@@ -44,8 +45,8 @@ function AppLinksSection() {
         data?.data?.map((item: IAppsLink) => (
           <div key={item.platform} className="space-y-2">
             <div
-              style={bgStyle}
-              className="py-2 px-4 rounded-lg font-bold text-xl text-black text-center">
+              style={{ ...bgStyle, color: theme.primary_text_color }}
+              className="py-2 px-4 rounded-lg font-bold text-xl text-center">
               {item.platform}
             </div>
             {item?.apps?.map((app: IApp) => (

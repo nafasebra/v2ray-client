@@ -3,18 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: Poppins;
-    src: url("/fonts/Poppins-Bold.ttf");
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: Morabba;
-    src: url("/fonts/Morabba.ttf");
-    font-display: swap;
-  }
-
   html,
   body {
     overflow-x: hidden;

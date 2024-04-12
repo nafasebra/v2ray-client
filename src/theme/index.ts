@@ -1,4 +1,11 @@
-export const defaultTheme = {
+import { ITheme } from "@/types";
+
+export const defaultTheme: ITheme = {
+  show_home: true,
+  primary_text_color: '',
+  secondary_text_color: '',
+  font_fa: '',
+  font_en: '',
   crispColor: "Purple",
   from: "#96e0da",
   via: "#eaccf8",

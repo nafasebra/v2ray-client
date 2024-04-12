@@ -16,6 +16,7 @@ function Main() {
   const textAreaId = useId();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const theme = useActiveTheme();
   const queryClient = useQueryClient();
   const [detailsPending, setDetailsPending] = useState(false);
 
@@ -65,7 +66,8 @@ function Main() {
         </label>
         <textarea
           {...register("config")}
-          className="text-white p-3 h-48 border-4 border-white bg-transparent rounded-xl focus:outline-none resize-none"
+          style={{ color: theme.secondary_text_color }}
+          className="p-3 h-48 border-4 border-white bg-transparent rounded-xl focus:outline-none resize-none"
           rows={5}></textarea>
         {!!errors.config && (
           <p className="text-red-500">{errors.config.message}</p>

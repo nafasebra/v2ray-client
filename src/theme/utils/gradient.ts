@@ -2,9 +2,8 @@ import { useTheme } from "@/store/theme";
 import { defaultTheme } from "@/theme";
 
 export const useGradientStyle = () => {
-  const themes = useTheme(state => state.themes);
-  const themeName = useTheme(state => state.theme);
-  const currentTheme = themes[themeName] ?? defaultTheme;
+  const theme = useTheme(state => state.theme);
+  const currentTheme = theme ?? defaultTheme;
 
   return {
     backgroundImage: `linear-gradient(to right, ${currentTheme?.from}, ${currentTheme?.via}, ${currentTheme?.to})`,
@@ -12,15 +11,13 @@ export const useGradientStyle = () => {
 };
 
 export const useActiveTheme = () => {
-  const themes = useTheme(state => state.themes);
-  const themeName = useTheme(state => state.theme);
-  return themes[themeName] ?? defaultTheme;
+  const theme = useTheme(state => state.theme);
+  return theme ?? defaultTheme;
 };
 
 export const useConicStyle = (percent: number) => {
-  const themes = useTheme(state => state.themes);
-  const themeName = useTheme(state => state.theme);
-  const currentTheme = themes[themeName] ?? defaultTheme;
+  const theme = useTheme(state => state.theme);
+  const currentTheme = theme ?? defaultTheme;
 
   const deg = (360 / 100) * percent;
 

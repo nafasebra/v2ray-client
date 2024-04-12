@@ -25,8 +25,33 @@ export function getSetting(lang: string) {
     .get<ISettingApp>("/settings.php", { params: { lang } })
     .then(res => ({
       ...res,
-      data: { ...res.data, logo: "https://picsum.photos/305" },
-    }));
+      data: {
+        ...res.data,
+        default_lang: "fa",
+        themeData: {
+          show_home: true,
+          primary_text_color: "#000000",
+          secondary_text_color: "#FFFFFF",
+          font_en: "/fonts/Poppins-Bold.ttf",
+          font_fa: "/fonts/Morabba.ttf",
+          crispColor: "Purple",
+          from: "#96e0da",
+          via: "#eaccf8",
+          to: "#937ef3",
+          chartBg: "#4d4185",
+          bg: 'url("https://picsum.photos/1920/1080")',
+          logo: "https://picsum.photos/400",
+          btnColor: "rgb(0,0,0)",
+          htmlColor: "rgb(255,255,255)",
+          title: "Client V2RAY",
+          mainPhoto: "https://picsum.photos/800",
+        },
+      },
+    }))
+    .then(res => {
+      console.log(res);
+      return res;
+    });
 }
 
 export async function getDetails(

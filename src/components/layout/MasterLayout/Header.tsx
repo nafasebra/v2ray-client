@@ -1,18 +1,15 @@
-import { getI18n, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 
 import { keys } from "@/api/keys";
-import { getHeaderButtons, getSetting } from "@/api/queries";
+import { getHeaderButtons } from "@/api/queries";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 
 import Button from "@/components/ui/Button";
+import { useActiveTheme } from "@/theme/utils/gradient";
 
 function Header() {
-  const { data: settingsData } = useQuery({
-    queryFn: () => getSetting(getI18n().language),
-    queryKey: [keys.SETTING],
-  });
-
+  const theme = useActiveTheme();
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
   const [, setSearchParams] = useSearchParams();
@@ -36,7 +33,7 @@ function Header() {
   return (
     <nav className="container-app flex items-stretch justify-between flex-col md:items-center md:flex-row-reverse gap-4 py-4 px-6">
       <div className="flex items-center gap-4 shrink-0">
-        {pathname !== "/" && (
+        {pathname !== "/" && theme.show_home && (
           <Link className="md:hidden ltr:mr-auto rtl:ml-auto" to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,14 +74,16 @@ function Header() {
           {i18n.language === "en" ? "فا" : "en"}
         </Button>
         <div className="flex items-center gap-4">
-          <h1 className="text-2xl text-white font-bold uppercase">
+          <h1
+            style={{ color: theme.secondary_text_color }}
+            className="text-2xl font-bold uppercase">
             {t("title")}
           </h1>
-          <img className="h-9" src={settingsData?.data.logo} alt="logo" />
+          <img className="h-9" src={theme.logo} alt="logo" />
         </div>
       </div>
       <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-2">
-        {pathname !== "/" && (
+        {pathname !== "/" && theme.show_home && (
           <Link className="hidden md:block" to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"

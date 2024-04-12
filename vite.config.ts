@@ -8,7 +8,7 @@ export default defineConfig({
   base:
     process.env.NODE_ENV === "development"
       ? "/"
-      : "https://content.patrick-status.site/site/panel-assets/default-style/",
+      : "https://content.patrick-status.site/site/default-style/",
   resolve: {
     alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
   },

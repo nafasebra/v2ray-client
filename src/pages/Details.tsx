@@ -6,7 +6,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { keys } from "@/api/keys";
 import useCopy from "@/hooks/useCopy";
 import { getDetails, changeHash } from "@/api/queries";
-import { useGradientStyle } from "@/theme/utils/gradient";
+import { useActiveTheme, useGradientStyle } from "@/theme/utils/gradient";
 
 import Button from "@/components/ui/Button";
 import Loading from "@/components/loading/Loading";
@@ -21,6 +21,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 function Details() {
+  const theme = useActiveTheme();
   const routeParams = useParams();
   const { t, i18n } = useTranslation();
   const queryClient = useQueryClient();
@@ -75,8 +76,8 @@ function Details() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
           <aside className="w-full lg:col-span-1 gap-3 flex flex-col items-stretch pb-3.5">
             <div
-              style={bgStyle}
-              className="py-2 px-4 rounded-lg font-bold text-3xl text-black text-center truncate font-en">
+              style={{ ...bgStyle, color: theme.primary_text_color }}
+              className="py-2 px-4 rounded-lg font-bold text-3xl text-center truncate font-en">
               {details?.data.result.FrontEnd.email}
             </div>
             <QRCodeContainer

@@ -47,10 +47,12 @@ function Details() {
 
   const { data: details, isLoading: detailsLoading } = useQuery({
     queryFn: () =>
-      getDetails({
-        lang: i18n.language,
-        hash: hash ?? undefined,
-      }),
+      getDetails(
+      //   {
+      //   lang: i18n.language,
+      //   hash: hash ?? undefined,
+      // }
+      ),
     queryKey: [keys.DETAILS, hash, i18n.language],
     enabled: !!hash?.trim(),
     retry: false,

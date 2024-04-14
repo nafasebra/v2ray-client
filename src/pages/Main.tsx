@@ -10,6 +10,7 @@ import { keys } from "@/api/keys";
 import { getDetails } from "@/api/queries";
 import Button from "@/components/ui/Button";
 import { useActiveTheme } from "@/theme/utils/gradient";
+import BackgroundStyle from "@/components/ui/BackgroundStyle";
 
 function Main() {
   const { mainPhoto } = useActiveTheme();
@@ -25,7 +26,7 @@ function Main() {
       z.object({
         config: z.string().min(1, t("main.form.config.invalid")),
       }),
-    [t]
+    [t],
   );
 
   const {
@@ -41,15 +42,13 @@ function Main() {
 
     try {
       const data = await queryClient.fetchQuery({
-        queryFn: () => getDetails(
-          // { uuid: values.config, lang: i18n.language }
-        ),
+        queryFn: () => getDetails({ uuid: values.config, lang: i18n.language }),
         queryKey: [keys.DETAILS, values.config, i18n.language],
       });
 
       queryClient.setQueryData(
         [keys.DETAILS, data.data.result.hash, i18n.language],
-        data
+        data,
       );
 
       navigate({ pathname: `/details/${data.data.result.hash}` });
@@ -61,31 +60,34 @@ function Main() {
   });
 
   return (
-    <section className="container-app grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6">
-      <form onSubmit={handleClick} className="flex flex-col gap-3">
-        <label htmlFor={textAreaId} className="text-2xl font-bold">
-          {t("main.title")}
-        </label>
-        <textarea
-          {...register("config")}
-          style={{ color: theme.secondary_text_color }}
-          className="p-3 h-48 border-4 border-white bg-transparent rounded-xl focus:outline-none resize-none"
-          rows={5}></textarea>
-        {!!errors.config && (
-          <p className="text-red-500">{errors.config.message}</p>
-        )}
-        <Button disabled={detailsPending} type="submit">
-          {t("main.check")}
-        </Button>
-      </form>
-      <div>
-        <img
-          src={mainPhoto}
-          alt="banner"
-          className="w-full max-w-xl mx-auto md:ml-auto"
-        />
-      </div>
-    </section>
+    <>
+      <BackgroundStyle styleName="home" />
+      <section className="container-app grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-100px)] p-6">
+        <form onSubmit={handleClick} className="flex flex-col gap-3">
+          <label htmlFor={textAreaId} className="text-2xl font-bold">
+            {t("main.title")}
+          </label>
+          <textarea
+            {...register("config")}
+            style={{ color: theme.secondary_text_color }}
+            className="p-3 h-48 border-4 border-white bg-transparent rounded-xl focus:outline-none resize-none"
+            rows={5}></textarea>
+          {!!errors.config && (
+            <p className="text-red-500">{errors.config.message}</p>
+          )}
+          <Button disabled={detailsPending} type="submit">
+            {t("main.check")}
+          </Button>
+        </form>
+        <div>
+          <img
+            src={mainPhoto}
+            alt="banner"
+            className="w-full max-w-xl mx-auto md:ml-auto"
+          />
+        </div>
+      </section>
+    </>
   );
 }
 

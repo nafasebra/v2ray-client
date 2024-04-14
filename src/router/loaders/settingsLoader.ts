@@ -33,7 +33,7 @@ const settingsLoader: LoaderFunction = async ({ request }) => {
       font-display: swap;
     }
   `;
-  
+
     document.head.appendChild(fontsStyleElem);
   }
 
@@ -47,7 +47,38 @@ const settingsLoader: LoaderFunction = async ({ request }) => {
     const favicon = `<link ref="icon" type="image/png" href="${data.logo}" />`;
 
     const lang = searchParams.get("lang");
-    document.documentElement.style.setProperty("--bgImg", currentTheme.bg);
+
+    document.documentElement.style.setProperty(
+      "--default-bg",
+      `url("${currentTheme.default_bg}")`,
+    );
+
+    document.documentElement.style.setProperty(
+      "--home-bg-mobile",
+      `url("${currentTheme.home_bg_mobile}")`,
+    );
+    document.documentElement.style.setProperty(
+      "--home-bg-tablet",
+      `url("${currentTheme.home_bg_tablet}")`,
+    );
+    document.documentElement.style.setProperty(
+      "--home-bg-desktop",
+      `url("${currentTheme.home_bg_desktop}")`,
+    );
+
+    document.documentElement.style.setProperty(
+      "--detail-bg-mobile",
+      `url("${currentTheme.detail_bg_mobile}")`,
+    );
+    document.documentElement.style.setProperty(
+      "--detail-bg-tablet",
+      `url("${currentTheme.detail_bg_tablet}")`,
+    );
+    document.documentElement.style.setProperty(
+      "--detail-bg-desktop",
+      `url("${currentTheme.detail_bg_desktop}")`,
+    );
+
     document.head.innerHTML += favicon;
     document.title = currentTheme.title;
 
@@ -60,7 +91,7 @@ const settingsLoader: LoaderFunction = async ({ request }) => {
     useTheme.setState({ isConfigured: true });
   }
 
-  if (!useTheme.getState().crispLoaded) {
+  if (!useTheme.getState().crispLoaded && !!data.crisp_id) {
     try {
       type CColor = keyof typeof ChatboxColors;
 

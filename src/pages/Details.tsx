@@ -19,6 +19,7 @@ import {
   ArrowUpTrayIcon,
   ArrowsUpDownIcon,
 } from "@heroicons/react/24/outline";
+import BackgroundStyle from "@/components/ui/BackgroundStyle";
 
 function Details() {
   const theme = useActiveTheme();
@@ -37,22 +38,20 @@ function Details() {
   const { mutate: mutateChangeHash, isPending: changePending } = useMutation({
     mutationFn: changeHash,
     onSuccess: async () => {
-       await queryClient.invalidateQueries({
-         exact: false,
-         queryKey: [keys.DETAILS],
-       });
+      await queryClient.invalidateQueries({
+        exact: false,
+        queryKey: [keys.DETAILS],
+      });
       modalController.current?.hide();
     },
   });
 
   const { data: details, isLoading: detailsLoading } = useQuery({
     queryFn: () =>
-      getDetails(
-      //   {
-      //   lang: i18n.language,
-      //   hash: hash ?? undefined,
-      // }
-      ),
+      getDetails({
+        lang: i18n.language,
+        hash: hash ?? undefined,
+      }),
     queryKey: [keys.DETAILS, hash, i18n.language],
     enabled: !!hash?.trim(),
     retry: false,
@@ -60,6 +59,7 @@ function Details() {
 
   return (
     <>
+      <BackgroundStyle styleName="detail" />
       <ConfirmModal
         ref={modalController}
         onSuccess={() => {

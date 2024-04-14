@@ -8,7 +8,7 @@
     overflow-x: hidden;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: var(--bgImg);
+    background-image: var(--default-bg);
     background-color: rgb(19, 11, 53);
     min-height: 100vh;
   }

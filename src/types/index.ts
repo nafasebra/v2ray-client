@@ -19,11 +19,13 @@ export interface IAppsLink {
 
 export interface ISettingApp {
   theme: string;
-  crisp_id: string;
-  footer_text_en: string;
-  footer_text_fa: string;
-  panels_cache_exp: string;
-  logo: string;
+  crisp_id?: string;
+  footer_text_en?: string;
+  footer_text_fa?: string;
+  panels_cache_exp?: string;
+  logo?: string;
+  themeData: ITheme;
+  default_lang: string
 }
 
 export interface IDetails {
@@ -88,7 +90,13 @@ export interface ITheme {
   via: string;
   to: string;
   chartBg: string;
-  bg: string;
+  default_bg: string;
+  home_bg_mobile: string;
+  home_bg_tablet: string;
+  home_bg_desktop: string;
+  detail_bg_mobile: string;
+  detail_bg_tablet: string;
+  detail_bg_desktop: string;
   logo: string;
   btnColor: string;
   htmlColor: string;

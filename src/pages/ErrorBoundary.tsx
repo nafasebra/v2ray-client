@@ -5,8 +5,6 @@ export default function ErrorBoundary() {
   const err = useRouteError();
   const theme = useActiveTheme();
 
-  console.log(err);
-
   if (isRouteErrorResponse(err))
     return (
       <div
@@ -16,5 +14,5 @@ export default function ErrorBoundary() {
       </div>
     );
 
-  return <div>Unknow Error</div>;
+  return <div>Unknown Error</div>;
 }

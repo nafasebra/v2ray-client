@@ -41,7 +41,9 @@ function Main() {
 
     try {
       const data = await queryClient.fetchQuery({
-        queryFn: () => getDetails({ uuid: values.config, lang: i18n.language }),
+        queryFn: () => getDetails(
+          // { uuid: values.config, lang: i18n.language }
+        ),
         queryKey: [keys.DETAILS, values.config, i18n.language],
       });
 

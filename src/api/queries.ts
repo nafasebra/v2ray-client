@@ -1,14 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // import { toFormData } from "axios";
-import { api, cdn } from ".";
+import { api } from ".";
 import {
   IButtonsResult,
   IAppsLink,
   ISettingApp,
   IDetails,
-  IDetailsReq,
-  ITheme,
+  // IDetailsReq
 } from "@/types";
+
+export function getTranslations() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return api.get<Record<string, any>>('/api/FrontEnd/texts.php')
+}
 
 export function getHeaderButtons(lang: string) {
   return api.get<IButtonsResult[]>("/api/FrontEnd/buttons.php", {
@@ -20,43 +23,36 @@ export function getAppsLink(lang: string) {
   return api.get<IAppsLink[]>("/api/FrontEnd/apps.php", { params: { lang } });
 }
 
-export function getSetting(lang: string) {
-  return api
-    .get<ISettingApp>("/settings.php", { params: { lang } })
-    .then(res => ({
-      ...res,
-      data: {
-        ...res.data,
-        default_lang: "fa",
-        themeData: {
-          show_home: true,
-          primary_text_color: "#000000",
-          secondary_text_color: "#FFFFFF",
-          font_en: "/fonts/Poppins-Bold.ttf",
-          font_fa: "/fonts/Morabba.ttf",
-          crispColor: "Purple",
-          from: "#96e0da",
-          via: "#eaccf8",
-          to: "#937ef3",
-          chartBg: "#4d4185",
-          bg: 'url("https://picsum.photos/1920/1080")',
-          logo: "https://picsum.photos/400",
-          btnColor: "rgb(0,0,0)",
-          htmlColor: "rgb(255,255,255)",
-          title: "Client V2RAY",
-          mainPhoto: "https://picsum.photos/800",
-        },
+export async function getSetting(lang: string) {
+  const res = await api.get<ISettingApp>("/settings.php", { params: { lang } });
+  return {
+    ...res,
+    data: {
+      ...res.data,
+      default_lang: "fa",
+      themeData: {
+        primary_text_color: "#000000",
+        secondary_text_color: "#FFFFFF",
+        font_en: "/fonts/Poppins-Bold.ttf",
+        font_fa: "/fonts/Morabba.ttf",
+        crispColor: "Purple",
+        from: "#96e0da",
+        via: "#eaccf8",
+        to: "#937ef3",
+        chartBg: "#4d4185",
+        bg: 'url("https://picsum.photos/1920/1080")',
+        logo: "https://picsum.photos/400",
+        btnColor: "rgb(0,0,0)",
+        htmlColor: "rgb(255,255,255)",
+        title: "Client V2RAY",
+        mainPhoto: "https://picsum.photos/800",
       },
-    }))
-    .then(res => {
-      console.log(res);
-      return res;
-    });
+    },
+  };
 }
 
-export async function getDetails(
-  detail: IDetailsReq
-): Promise<{ data: IDetails }> {
+export async function getDetails(): Promise<{ data: IDetails }> {
+  // detail: IDetailsReq
   return {
     data: {
       ok: true,
@@ -121,8 +117,4 @@ export function changeHash(hash: string) {
   return api.get<IDetails>("/api/change/index.php", {
     params: { hash },
   });
-}
-
-export function getTheme(name: string) {
-  return cdn.get<ITheme>(`/themes/${name}.json`);
 }

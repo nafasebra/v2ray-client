@@ -4,4 +4,5 @@ export const keys = {
   SETTING: "SETTING",
   DETAILS: "DETAILS",
   THEME: "THEME",
+  TRANSLATIONS: "TRANSLATIONS",
 } as const;

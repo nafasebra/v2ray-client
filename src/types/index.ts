@@ -83,7 +83,6 @@ export interface IDetailsReq {
 export interface ITheme {
   primary_text_color: string;
   secondary_text_color: string;
-  show_home: boolean;
   crispColor: string;
   from: string;
   via: string;

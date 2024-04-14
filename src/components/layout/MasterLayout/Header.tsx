@@ -12,7 +12,9 @@ function Header() {
   const theme = useActiveTheme();
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const showHome = searchParams.get("home") === 'true' || searchParams.get('home') == null
 
   const { data, isLoading, isSuccess } = useQuery({
     queryFn: () => getHeaderButtons(i18n.language),
@@ -33,7 +35,7 @@ function Header() {
   return (
     <nav className="container-app flex items-stretch justify-between flex-col md:items-center md:flex-row-reverse gap-4 py-4 px-6">
       <div className="flex items-center gap-4 shrink-0">
-        {pathname !== "/" && theme.show_home && (
+        {pathname !== "/" && showHome && (
           <Link className="md:hidden ltr:mr-auto rtl:ml-auto" to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +85,7 @@ function Header() {
         </div>
       </div>
       <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-start gap-2">
-        {pathname !== "/" && theme.show_home && (
+        {pathname !== "/" && showHome && (
           <Link className="hidden md:block" to="/">
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -37,10 +37,10 @@ function Details() {
   const { mutate: mutateChangeHash, isPending: changePending } = useMutation({
     mutationFn: changeHash,
     onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        exact: false,
-        queryKey: [keys.DETAILS],
-      });
+       await queryClient.invalidateQueries({
+         exact: false,
+         queryKey: [keys.DETAILS],
+       });
       modalController.current?.hide();
     },
   });

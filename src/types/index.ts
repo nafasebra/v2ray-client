@@ -18,14 +18,15 @@ export interface IAppsLink {
 }
 
 export interface ISettingApp {
-  theme: string;
   crisp_id?: string;
   footer_text_en?: string;
   footer_text_fa?: string;
-  panels_cache_exp?: string;
+  header_text_en?: string;
+  header_text_fa?: string;
+  title?: string;
   logo?: string;
   themeData: ITheme;
-  default_lang: string
+  default_lang: string;
 }
 
 export interface IDetails {

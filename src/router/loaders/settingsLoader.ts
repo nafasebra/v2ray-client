@@ -44,7 +44,12 @@ const settingsLoader: LoaderFunction = async ({ request }) => {
   const currentTheme = useTheme.getState().theme ?? defaultTheme;
 
   if (!useTheme.getState().isConfigured) {
-    const favicon = `<link ref="icon" type="image/png" href="${data.logo}" />`;
+    if (data.logo) {
+      const favicon = `<link ref="icon" type="image/png" href="${data.logo}" />`;
+      document.head.innerHTML += favicon;
+    }
+
+    if (data.title) document.title = data.title;
 
     const lang = searchParams.get("lang");
 
@@ -79,7 +84,6 @@ const settingsLoader: LoaderFunction = async ({ request }) => {
       `url("${currentTheme.detail_bg_desktop}")`,
     );
 
-    document.head.innerHTML += favicon;
     document.title = currentTheme.title;
 
     if (lang) {
